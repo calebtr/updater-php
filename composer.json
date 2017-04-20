@@ -1,0 +1,17 @@
+{
+  "require": {
+    "php": ">=5.5.0",
+    "guzzlehttp/guzzle": "*"
+  },
+  "authors": [
+    {
+      "name": "Caleb Tucker-Raymond",
+      "email": "calebtr@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Updater\\": "src/"
+    }
+  }
+}
