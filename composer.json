@@ -1,17 +1,20 @@
 {
-  "require": {
-    "php": ">=5.5.0",
-    "guzzlehttp/guzzle": "*"
-  },
-  "authors": [
-    {
-      "name": "Caleb Tucker-Raymond",
-      "email": "calebtr@gmail.com"
+    "name": "calebtr/updater-php",
+    "description": "A PHP library for the Updater.com API",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Caleb Tucker-Raymond",
+            "email": "calebtr@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "guzzlehttp/guzzle": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Updater\\": "src/"
+        }
     }
-  ],
-  "autoload": {
-    "psr-4": {
-      "Updater\\": "src/"
-    }
-  }
 }
