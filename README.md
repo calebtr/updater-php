@@ -52,7 +52,7 @@ Guzzle will pass a Response object to the success callback and an Exception obje
        
 Inject your settings by implementing your own class: 
 
-    class sandboxUpdaterClient extends \UpdaterPHP\Client {
+    class sandboxUpdaterClient extends \Updater\Client {
         public function __construct() {
             $id = 1234;
             $token = '9b53bda4d9417087f8634c31e3b88120';
