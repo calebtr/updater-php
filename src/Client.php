@@ -48,7 +48,6 @@ class Client {
     }
 
     public function transaction($payload, $fulfilled = null,  $rejected = null) {
-
         $url = $this->buildUrl('transactions');
 
         $headers = array(
@@ -62,23 +61,19 @@ class Client {
         );
 
         $promise = $this->client->requestAsync('POST', $url, $options)->then(
-            function($r) {
-                var_dump($r);
+            function($r) use ($fulfilled) {
                 if (!empty($fulfilled)) {
                    call_user_func($fulfilled, $r);
                 }
             },
-            function ($r) {
-                var_dump($r);
-
+            function ($r) use ($rejected) {
                 if (!empty($rejected)) {
                     call_user_func($rejected, $r);
                 }
             }
         );
 
-        $response = $promise->wait();
-        return $response;
+        return $promise;
 
     }
 
