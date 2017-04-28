@@ -61,3 +61,11 @@ Inject your settings by implementing your own class:
         }
     }
     
+    
+# Roadmap
+
+Having to set the base url outside of the constructor is kind of clumsy, but helpful for testing. 
+
+Extracting the external_id field from the payload is also clumsy.
+
+Updater.com has a batch API method that could also be implemented.
