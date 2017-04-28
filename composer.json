@@ -1,7 +1,7 @@
 {
     "name": "calebtr/updater-php",
     "description": "A PHP library for the Updater.com API",
-    "license": "MIT",
+    "license": "GPL-3.0",
     "authors": [
         {
             "name": "Caleb Tucker-Raymond",
