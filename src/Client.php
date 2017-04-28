@@ -50,6 +50,20 @@ class Client {
     }
 
     /**
+     * @param string $token
+     */
+    public function setToken($token) {
+        $this->token = $token;
+    }
+
+    /**
+     * @param string $id
+     */
+    public function setIntegrationID($id) {
+        $this->integrationID = $id;
+    }
+
+    /**
      * @param string $version
      */
     public function setVersion($version) {
