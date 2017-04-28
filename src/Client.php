@@ -47,7 +47,7 @@ class Client {
         return implode('/', $elements);
     }
 
-    public function transaction($payload, callable $callback = null) {
+    public function transaction($payload, $fulfilled = null,  $rejected = null) {
 
         $url = $this->buildUrl('transactions');
 
@@ -58,16 +58,27 @@ class Client {
 
         $options = array(
             'headers' => $headers,
-            'body' => json_encode($payload)
+            'body' => json_encode(array('payload' => $payload, 'external_id' => $payload['external_id']))
         );
 
-        $this->client->requestAsync('POST', $url, $options)->then(
-            function($response) {
-                if (!empty($callback)) {
-                   call_user_func($callback, $response);
+        $promise = $this->client->requestAsync('POST', $url, $options)->then(
+            function($r) {
+                var_dump($r);
+                if (!empty($fulfilled)) {
+                   call_user_func($fulfilled, $r);
+                }
+            },
+            function ($r) {
+                var_dump($r);
+
+                if (!empty($rejected)) {
+                    call_user_func($rejected, $r);
                 }
             }
         );
+
+        $response = $promise->wait();
+        return $response;
 
     }
 
