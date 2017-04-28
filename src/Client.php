@@ -6,36 +6,62 @@ use GuzzleHttp\Client as GuzzleClient;
 
 class Client {
 
+    /**
+     * @var GuzzleClient
+     */
     protected $client;
 
+    /**
+     * @var string
+     */
     private $base_url;
+
+    /**
+     * @var string
+     */
     private $integrationID;
+
+    /**
+     * @var string
+     */
     private $version = 'v1';
 
+    /**
+     * @var string
+     */
     private $token;
 
+    /**
+     * Client constructor.
+     * @param string $id
+     * @param string $token
+     */
     public function __construct($id, $token) {
         $this->setIntegrationID($id);
         $this->setToken($token);
         $this->client = new GuzzleClient();
     }
 
+    /**
+     * @param string $base_url
+     */
     public function setBaseUrl($base_url) {
         $this->base_url = $base_url;
     }
 
-    public function setToken($token) {
-        $this->token = $token;
-    }
-
-    public function setIntegrationID($id) {
-        $this->integrationID = $id;
-    }
-
+    /**
+     * @param string $version
+     */
     public function setVersion($version) {
         $this->version = $version;
     }
 
+    /**
+     * Builds a url string for the Updater.com API.
+     *
+     * @param $method
+     * @return string
+     */
     private function buildUrl($method) {
         $elements = array(
             $this->base_url,
@@ -47,7 +73,17 @@ class Client {
         return implode('/', $elements);
     }
 
-    public function transaction($payload, $fulfilled = null,  $rejected = null) {
+    /**
+     * Submits a single transaction to the Updater.com API.
+     *
+     * $payload should include an 'external_id' key.
+     *
+     * @param array $payload
+     * @param null | callable $fulfilled
+     * @param null | callable $rejected
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function transaction(array $payload, $fulfilled = null,  $rejected = null) {
         $url = $this->buildUrl('transactions');
 
         $headers = array(
